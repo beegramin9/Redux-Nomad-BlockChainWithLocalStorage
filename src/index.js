@@ -11,7 +11,3 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root')
 );
-
-// beegramin9/Redux-Nomad-BlockChainWithLocalStorage
-Project: building a blockchain Webapp with React, Redux-persist. Data-persistence guaranteed
-learning basic features: store, action, dispatch
