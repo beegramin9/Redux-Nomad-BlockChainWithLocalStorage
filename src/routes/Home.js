@@ -1,6 +1,6 @@
 import React, {useState, Fragment} from "react";
 import { connect } from "react-redux";
-import { actionCreators } from '../store/storeToDo';
+import { actionCreators } from '../store/storeWithToolkit';
 import ToDo from "../components/ToDo";
 
 function Home( {stateToDos, dispatchAddTodo} ) {
@@ -29,7 +29,6 @@ Home.js에서 store.js의 현재 state를 받아와서 Home Component props에
 return값을 추가로 전달한다 == Home( {props} )자리에 매개변수로 줄 수 있음, Pure React */
 function mapStateToProps(state, ownProps) {
     /* store에서 받아온 state, 원래 가지고 있던 props, 여기서는 react-router부터 받아온 history, location 등의 props */
-    console.log('mapStateToProps',state, ownProps);
     /* 기존의 ownProps(react-router에 의해 제공된 history, location...) object에 stateToDos: state object 추가(concatonation) */
     return { stateToDos: state }
 }
@@ -43,7 +42,6 @@ Home.js에서 store.js의 dispatch를 Home Component props에 return값을 추�
 즉 mapStateToProps에서 state를 받아오고,
 mapDispatchToProps에서 state를 변화시키는 logic을 가진 dispatch를 가져온다 */
 function mapDispatchToProps(dispatch, ownProps) {
-    console.log('mapDispatchToProps',dispatch);
     return { dispatchAddTodo: text => dispatch(actionCreators.addToDo(text)) }
 }
 /* connect(mapStateToProps, mapDispatchToProps) 

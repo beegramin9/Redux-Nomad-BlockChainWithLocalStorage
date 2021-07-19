@@ -1,14 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import { actionCreators } from '../store/storeToDo';
+import { actionCreators } from '../store/storeWithToolkit';
 import { Link } from "react-router-dom";
 
 function ToDo ( {text, clickDeleteButton, id} ) {
     return (
         <li>
             <Link to={`/${id}`}>
-                {text} <button onClick={clickDeleteButton}>DELETE</button>
+                {text} 
             </Link>
+            <button onClick={clickDeleteButton}>DELETE</button>
         </li>
     )
 }
