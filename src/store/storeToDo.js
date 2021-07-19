@@ -28,7 +28,7 @@ export const  {
 
 /* action과 reducer를 제공 */
 const toDos = createSlice({
-    name: 'toDosReducer',
+    name: 'toDosReducer', // Redux Devtools에서 볼 수 있음
     initialState: [],
     reducers: {
         add: (state, action) => {
