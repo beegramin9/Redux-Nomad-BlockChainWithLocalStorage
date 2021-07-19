@@ -1,6 +1,6 @@
 import React, {useState, Fragment} from "react";
 import { connect } from "react-redux";
-import { actionCreators } from '../store/storeToDo';
+import { add } from '../store/storeToDo';
 import ToDo from "../components/ToDo";
 
 function Home( {stateToDos, dispatchAddTodo} ) {
@@ -44,7 +44,7 @@ Home.js에서 store.js의 dispatch를 Home Component props에 return값을 추�
 mapDispatchToProps에서 state를 변화시키는 logic을 가진 dispatch를 가져온다 */
 function mapDispatchToProps(dispatch, ownProps) {
     console.log('mapDispatchToProps',dispatch);
-    return { dispatchAddTodo: text => dispatch(actionCreators.addToDo(text)) }
+    return { dispatchAddTodo: text => dispatch(add(text)) }
 }
 /* connect(mapStateToProps, mapDispatchToProps) 
 둘 중 하나만 필요하다면 나머지를 null로 바꿔주면 된다.*/

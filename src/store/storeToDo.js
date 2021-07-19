@@ -1,35 +1,43 @@
 import {createStore} from "redux";
+import {createAction, createReducer, configureStore, createSlice } from "@reduxjs/toolkit";
 
-const ADD = 'ADD';
+// 1. createAction
+/* const ADD = 'ADD';
 const DELETE = 'DELETE';
 
-const addToDo = text => (
-    {type: ADD,
-    text}
-)
+const addToDo = createAction('ADD');
+const deleteToDo = createAction('DELETE'); */
 
-const deleteToDo = id => (
-    {type: DELETE,
-    id: parseInt(id)}
-)
+// 2. createReducer
+/* Initial State, action.type 
+createReducer를 사용하면 state를 mutate할 수 있다.
+물론 이전의 방식대로 바로 새로운 state를 return할 수도 있다. 
+state를 mutate할 때는 return하면 안된다. 새로운 state만 return할 수 있다. */
+/* const reducer = createReducer( [], {
+    [addToDo]: (state, action) => {
+        state.push({text:action.payload, id: Date.now()});
+    },
+    [deleteToDo]: (state, action) => state.filter( existingToDo => existingToDo.id !== action.payload)
+}); */
 
-export const actionCreators = {
-    addToDo,
-    deleteToDo
-}
 
-const reducer = (state=[], action) => {
-    switch (action.type) {
-        case ADD:
-            return [ {text: action.text, id: Date.now()}, ...state ]
-        case DELETE:
-            return state.filter( existingToDo => existingToDo.id !== action.id)
-        default:
-            return state 
+export const  {
+    add,
+    remove
+} = toDos.actions;
+
+/* action과 reducer를 제공 */
+const toDos = createSlice({
+    name: 'toDosReducer',
+    initialState: [],
+    reducers: {
+        add: (state, action) => {
+                state.push({text:action.payload, id: Date.now()});
+            }, 
+        remove: (state, action) => state.filter( existingToDo => existingToDo.id !== action.payload)
     }
-}
+})
 
-
-const storeToDo = createStore(reducer);
+const storeToDo = configureStore({reducer: toDos.reducers});
 
 export default storeToDo;
